@@ -2,6 +2,10 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
+function normalizeOrigin(origin: string) {
+  return origin.trim().replace(/\/$/, '');
+}
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const allowedOrigins = (
@@ -9,11 +13,20 @@ async function bootstrap() {
     'http://localhost:5173,https://mini-job-queue-dashboard-frontend.vercel.app'
   )
     .split(',')
-    .map((origin) => origin.trim())
+    .map(normalizeOrigin)
     .filter(Boolean);
 
   app.enableCors({
-    origin: allowedOrigins
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(normalizeOrigin(origin))) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error(`Origin ${origin} is not allowed by CORS`));
+    },
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type']
   });
 
   app.useGlobalPipes(
