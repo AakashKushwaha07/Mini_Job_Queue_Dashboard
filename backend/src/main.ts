@@ -4,9 +4,16 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const allowedOrigins = (
+    process.env.FRONTEND_ORIGIN ??
+    'http://localhost:5173,https://mini-job-queue-dashboard-frontend.vercel.app'
+  )
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 
   app.enableCors({
-    origin: process.env.FRONTEND_ORIGIN ?? 'http://localhost:5173'
+    origin: allowedOrigins
   });
 
   app.useGlobalPipes(
