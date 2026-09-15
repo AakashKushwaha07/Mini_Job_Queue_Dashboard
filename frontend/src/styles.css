@@ -1,0 +1,260 @@
+:root {
+  color: #1b1f24;
+  background: #f5f7f8;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.app-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.top-bar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  color: #587083;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+  margin: 0;
+}
+
+.create-form {
+  align-items: end;
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr auto;
+  gap: 16px;
+  padding: 16px;
+}
+
+label {
+  color: #41515c;
+  display: grid;
+  font-size: 0.85rem;
+  font-weight: 700;
+  gap: 8px;
+}
+
+input {
+  border: 1px solid #cbd5db;
+  border-radius: 6px;
+  color: #1b1f24;
+  min-height: 44px;
+  padding: 0 12px;
+  width: 100%;
+}
+
+input:focus {
+  border-color: #116466;
+  outline: 3px solid rgba(17, 100, 102, 0.16);
+}
+
+.create-form button,
+.secondary-button,
+.icon-button {
+  align-items: center;
+  border: 0;
+  border-radius: 6px;
+  display: inline-flex;
+  font-weight: 700;
+  gap: 8px;
+  justify-content: center;
+  min-height: 44px;
+}
+
+.create-form button {
+  background: #116466;
+  color: #ffffff;
+  padding: 0 18px;
+}
+
+.icon-button {
+  aspect-ratio: 1;
+  background: #ffffff;
+  border: 1px solid #d8e0e4;
+  color: #26343d;
+  width: 44px;
+}
+
+.icon-button.danger {
+  color: #a43030;
+}
+
+.status-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.status-tabs button {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 8px;
+  color: #41515c;
+  display: flex;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 14px;
+}
+
+.status-tabs button.active {
+  border-color: #116466;
+  color: #116466;
+  outline: 3px solid rgba(17, 100, 102, 0.12);
+}
+
+.error-banner {
+  align-items: center;
+  background: #fff0ef;
+  border: 1px solid #efbbb7;
+  border-radius: 8px;
+  color: #942f2b;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+}
+
+.job-list {
+  display: grid;
+  gap: 12px;
+}
+
+.job-row {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  padding: 16px;
+}
+
+.job-main {
+  min-width: 0;
+}
+
+.job-main h2 {
+  font-size: 1.05rem;
+  margin: 10px 0 6px;
+  overflow-wrap: anywhere;
+}
+
+.job-main p {
+  color: #62717a;
+  margin: 0;
+}
+
+.status-pill {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 5px 9px;
+  text-transform: uppercase;
+}
+
+.status-pill.pending {
+  background: #fff4cf;
+  color: #7a5a00;
+}
+
+.status-pill.running {
+  background: #dff5f2;
+  color: #0d6660;
+}
+
+.status-pill.completed {
+  background: #e6f6df;
+  color: #2f6b1f;
+}
+
+.status-pill.failed {
+  background: #ffe8e4;
+  color: #963328;
+}
+
+.job-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: end;
+}
+
+.secondary-button {
+  background: #eef4f5;
+  color: #20313b;
+  padding: 0 12px;
+}
+
+.empty-state {
+  background: #ffffff;
+  border: 1px dashed #cbd5db;
+  border-radius: 8px;
+  color: #62717a;
+  padding: 32px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: min(100% - 20px, 1120px);
+    padding: 20px 0;
+  }
+
+  .create-form,
+  .job-row {
+    grid-template-columns: 1fr;
+  }
+
+  .status-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .job-actions {
+    justify-content: start;
+  }
+}
